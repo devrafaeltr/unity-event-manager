@@ -1,5 +1,6 @@
 public interface IGameEvent { }
 
+#region Examples
 public class WPressEvent : IGameEvent
 {
 
@@ -16,3 +17,4 @@ public class CubeSpawnEvent : IGameEvent
         spawnPos = pos;
     }
 }
+#endregion Examples
