@@ -1,13 +1,5 @@
-﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
-
-
-/*public interface IGameEvent
-{
-    
-}*/
 
 public class Manager_Events
 {
