@@ -28,7 +28,7 @@ public class SomeEvent : IGameEvent
 ```
 then, you can access whichever variable you want:
 ```C#
-public void OnSomeEvet(IGameEvent gameEvent)
+public void OnSomeEvent(IGameEvent gameEvent)
 {
   SomeEvent someEvent = (SomeEvent)gameEvent;
   
