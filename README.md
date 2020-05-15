@@ -1,4 +1,4 @@
-[![GitHub](https://img.shields.io/github/license/devrafael-source/Unity_EventManager)](https://github.com/devrafael-source/Unity_EventManager/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/devrafael-source/unity-event-manager)](https://github.com/devrafael-source/unity-event-manager/blob/master/LICENSE)
 # unity-event-manager
 Event Aggregator pattern for Unity.
 ___
