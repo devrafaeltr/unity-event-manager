@@ -14,7 +14,7 @@ There is a template. You can use any name.
 3. Now, anywhere, you can call ```Manager_AddListener.AddListener(eventName, yourFunction)```, ```Manager_AddListener.RemoveListener(eventName, yourFunction)``` and ```Manager_AddListener.Publish(eventName, IGameEvent)```.
 
 ### Notes  
-You need to create a class for **EACH** different event call which has different parameters.
+You need to create a class, which can be in the same script, for **EACH** different event call which has different parameters.
 ```C#
 public class SomeAnotherEvent : IGameEvent
 {
