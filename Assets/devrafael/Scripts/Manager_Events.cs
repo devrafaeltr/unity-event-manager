@@ -34,7 +34,9 @@ public class Manager_Events
     {
         if (_eventDictionary.TryGetValue(eventName, out List<Action<IGameEvent>> callbackList))
         {
-            foreach (var callback in callbackList.ToArray())
+            Action<IGameEvent>[] callbackListAux = callbackList.ToArray();
+            
+            foreach (var callback in callbackListAux)
             {
                 callback?.Invoke(eventInfos);
             }
