@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using System;
 
+#if UNITY_EDITOR
+using UnityEngine;
+#endif
+
 public class Manager_Events
 {
     #region Listerners 
@@ -17,7 +21,16 @@ public class Manager_Events
         {
             callbackList = new List<Action<IGameEvent>>();
             _eventDictionary.Add(eventName, callbackList);
+            #if UNITY_EDITOR
+            Debug.LogWarning($"There is no event called: {eventName}. Creating a new one.");   
+            #endif
         }
+        #if UNITY_EDITOR
+        else
+        {    
+            Debug.Log($"Event: {eventName}. Adding {callbackToAdd.Method} from {callbackToAdd.Target}.");             
+        }
+        #endif
 
         callbackList.Add(callbackToAdd);
     }
@@ -27,18 +40,41 @@ public class Manager_Events
         if (_eventDictionary.TryGetValue(eventName, out List<Action<IGameEvent>> callbackList))
         {
             callbackList?.Remove(callbackToRemove);
+
+            #if UNITY_EDITOR
+            Debug.Log($"Event: {eventName}. Removing {callbackToRemove.Method} from {callbackToRemove.Target}.");
+            #endif
         }
+        #if UNITY_EDITOR
+        else
+        {
+            Debug.LogWarning($"There is no event called: {eventName}.");                    
+        }
+        #endif
     }
+
 
     public static void Publish(string eventName, IGameEvent eventInfos)
     {
         if (_eventDictionary.TryGetValue(eventName, out List<Action<IGameEvent>> callbackList))
         {
             Action<IGameEvent>[] callbackListAux = callbackList.ToArray();
-            
+
             foreach (var callback in callbackListAux)
             {
                 callback?.Invoke(eventInfos);
+                if (callback != null)
+                {
+#if UNITY_EDITOR
+                    Debug.Log($"Event: {eventName}. Calling {callback.Method} from {callback.Target}.");
+#endif
+                }
+#if UNITY_EDITOR
+                else
+                {
+                    Debug.LogWarning($"Event: {eventName}. Some callback is null.");                    
+                }
+#endif
             }
         }
     }
