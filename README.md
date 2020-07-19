@@ -4,8 +4,8 @@ Event Aggregator pattern for Unity.
 ___
 ## Getting started
 ### How to install:
-1. Download and import to your project.
-2. Done!
+1. Download from [Releases](https://github.com/devrafael-source/unity-event-manager/files/4944667/devrafael_EventManager.zip)
+2. Open your project, go to Assets > Import Package > Custom Package and choose the package OR double-click the package to import to the open project
 
 ### How to use:
 1. Go to the Manager_Events under `#region` Listerners.
