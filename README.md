@@ -12,9 +12,10 @@ ___
 2. Create a `public static string eventName = "EventName";` 
 There is a template. You can use any name.
 3. Now, anywhere, you can call ```Manager_AddListener.AddListener(eventName, yourFunction)```, ```Manager_AddListener.RemoveListener(eventName, yourFunction)``` and ```Manager_AddListener.Publish(eventName, IGameEvent)```.
+4. (Optional) change `SHOW_DEBUG` value to `true` if you want debugs showing when a event is registered, called, deleted, etc.
 
 ### Notes  
-You need to create a class, which can be in the same script, for **EACH** different event call which has different parameters.
+You need to create a class, which can be in the same script, for **EACH** different event that has different parameters.
 ```C#
 public class SomeAnotherEvent : IGameEvent
 {
@@ -36,4 +37,4 @@ public void OnSomeEvent(IGameEvent gameEvent)
 }
 ```
 
-You need to create a `public static string eventName` in the `Manager_Events` for **EACH** different event. For example, a event for when the player move, other for when kill enemy, and so on. Normally, the number of event names is the same to the number of event classes.
+You also need to create a `public static string eventName` in the `Manager_Events` for **EACH** different event. For example, a event for when the player move, other for when kill enemy, and so on. Normally, the number of event names is higher than the number of event classes, because you don't need a class for an event that doesn't have parameters, you can call it with `null` instead.
