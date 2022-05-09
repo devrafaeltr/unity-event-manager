@@ -1,3 +1,4 @@
+
 using System.Collections.Generic;
 using System;
 
@@ -7,7 +8,11 @@ using UnityEngine;
 
 public class Manager_Events
 {
-    #region Listerners 
+#if UNITY_EDITOR
+    private static bool SHOW_DEBUG = false;
+#endif
+
+     #region Listerners 
     //public static string templateEventName = "TemplateEventName"
     public static string onWPress = "OnWPress";
     public static string onCubeSpawn = "OnCubeSpawn";
@@ -21,16 +26,19 @@ public class Manager_Events
         {
             callbackList = new List<Action<IGameEvent>>();
             _eventDictionary.Add(eventName, callbackList);
-            #if UNITY_EDITOR
-            Debug.LogWarning($"There is no event called: {eventName}. Creating a new one.");   
-            #endif
+#if UNITY_EDITOR
+            if (SHOW_DEBUG)
+            {
+                Debug.LogWarning($"There is no event called: {eventName}. Creating a new one.");
+            }
+#endif
         }
-        #if UNITY_EDITOR
-        else
-        {    
-            Debug.Log($"Event: {eventName}. Adding {callbackToAdd.Method} from {callbackToAdd.Target}.");             
+#if UNITY_EDITOR
+        else if (SHOW_DEBUG)
+        {
+            Debug.Log($"Event: {eventName}. Adding {callbackToAdd.Method} from {callbackToAdd.Target}.");
         }
-        #endif
+#endif
 
         callbackList.Add(callbackToAdd);
     }
@@ -41,16 +49,19 @@ public class Manager_Events
         {
             callbackList?.Remove(callbackToRemove);
 
-            #if UNITY_EDITOR
-            Debug.Log($"Event: {eventName}. Removing {callbackToRemove.Method} from {callbackToRemove.Target}.");
-            #endif
+#if UNITY_EDITOR
+            if (SHOW_DEBUG)
+            {
+                Debug.Log($"Event: {eventName}. Removing {callbackToRemove.Method} from {callbackToRemove.Target}.");
+            }
+#endif
         }
-        #if UNITY_EDITOR
-        else
+#if UNITY_EDITOR
+        else if (SHOW_DEBUG)
         {
-            Debug.LogWarning($"There is no event called: {eventName}.");                    
+            Debug.LogWarning($"There is no event called: {eventName}.");
         }
-        #endif
+#endif
     }
 
 
@@ -66,13 +77,16 @@ public class Manager_Events
                 if (callback != null)
                 {
 #if UNITY_EDITOR
-                    Debug.Log($"Event: {eventName}. Calling {callback.Method} from {callback.Target}.");
+                    if (SHOW_DEBUG)
+                    {
+                        Debug.Log($"Event: {eventName}. Calling {callback.Method} from {callback.Target}.");
+                    }
 #endif
                 }
 #if UNITY_EDITOR
-                else
+                else if (SHOW_DEBUG)
                 {
-                    Debug.LogWarning($"Event: {eventName}. Some callback is null.");                    
+                    Debug.LogWarning($"Event: {eventName}. Some callback is null.");
                 }
 #endif
             }
