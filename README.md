@@ -12,7 +12,9 @@ ___
 2. Create a `public static string eventName = "EventName";` 
 There is a template. You can use any name.
 3. Now, anywhere, you can call ```Manager_AddListener.AddListener(eventName, yourFunction)```, ```Manager_AddListener.RemoveListener(eventName, yourFunction)``` and ```Manager_AddListener.Publish(eventName, IGameEvent)```.
-4. (Optional) Change `SHOW_DEBUG` value to `true` if you want debugs showing when a event is registered, called, deleted, etc.
+
+### Settings:
+You can change `SHOW_DEBUG` to `true` or `false` in the Manager_Event to choose wether or not to show debug logs.
 
 ### Notes  
 You need to create a class, which can be in the same script, for **EACH** different event that has different parameters.
