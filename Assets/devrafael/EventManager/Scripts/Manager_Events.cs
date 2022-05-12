@@ -64,7 +64,7 @@ public class Manager_Events
     }
 
 
-    public static void Publish(string eventName, IGameEvent eventInfos)
+    public static void Publish(string eventName, IGameEvent eventInfos = null)
     {
         if (_eventDictionary.TryGetValue(eventName, out List<Action<IGameEvent>> callbackList))
         {
